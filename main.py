@@ -6,7 +6,8 @@ from project_Oscar_de.ui.console import (
     ask_genre_and_year,
     show_search_results,
     show_popular_queries,
-    ask_continue
+    ask_continue,
+    clear_screen
 )
 from project_Oscar_de.logic.details import get_film_details
 from project_Oscar_de.ui.local import get_translator
@@ -14,13 +15,13 @@ from project_Oscar_de.ui.local import get_translator
 
 def choose_language() -> str:
     """
-    Предлагает пользователю выбрать язык интерфейса.
+    Prompts the user to select the interface language.
     """
-    print("Choose language / Выберите язык:")
+    print("\nВыберите язык / Sprache wählen:")
     print("1. Русский")
     print("2. Deutsch")
     while True:
-        lang_choice = input("Введите номер языка (1 или 2): ").strip()
+        lang_choice = input("\nВведите номер языка (1 или 2) \n/ Geben Sie die Nummer der Sprache ein (1 oder 2): ").strip()
         if lang_choice == "1":
             return "ru"
         elif lang_choice == "2":
@@ -31,12 +32,13 @@ def choose_language() -> str:
 
 def main() -> None:
     """
-    Основная точка входа программы. Отображает меню и обрабатывает пользовательские команды.
+    The main entry point of the program. Displays the menu and processes user commands.
     """
     lang = choose_language()
     t = get_translator(lang)
 
     while True:
+        clear_screen()
         choice = show_menu(t)
 
         if choice == "0":
@@ -49,8 +51,10 @@ def main() -> None:
                 print(t["empty_input"])
                 continue
             results = search_by_keyword(keyword)
+            clear_screen()
             film_id = show_search_results(results, t)
             if film_id:
+                clear_screen()
                 get_film_details(film_id, t)
 
         elif choice == "2":
@@ -62,11 +66,14 @@ def main() -> None:
             if not results:
                 print("\n" + t["no_results"])
             else:
+                clear_screen()
                 film_id = show_search_results(results, t, show_year=False)
                 if film_id:
+                    clear_screen()
                     get_film_details(film_id, t)
 
         elif choice == "3":
+            clear_screen()
             queries = get_popular_searches()
             show_popular_queries(queries, t)
 

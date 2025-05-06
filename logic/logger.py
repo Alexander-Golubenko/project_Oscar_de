@@ -12,9 +12,9 @@ logging.basicConfig(
 
 def log_error(context: str, error: Exception) -> None:
     """
-    Записывает сообщение об ошибке в файл логов.
+    Writes an error message to the log file.
 
-    :param context: Название функции или области, где произошла ошибка
-    :param error: Исключение
+    :param context: Name of the function or context where the error occurred
+    :param error: Exception object
     """
     logging.error(f"{context}: {str(error)}")

@@ -24,6 +24,8 @@ translations = {
         "available_genres": "Доступные жанры:",
         "year_range": "Допустимый диапазон лет: {min_year} – {max_year}",
         "film_not_found": "Фильм не найден.",
+        "next_page": "следующая страница",
+        "return_to_menu": "выйти в меню",
         "film_labels": [
             "Название фильма", "Описание", "Год",
             "Длительность, мин", "Язык", "Актёры", "Жанры"
@@ -32,12 +34,12 @@ translations = {
     },
     "de": {
         "menu_title": "--- Menü ---",
-        "menu_option_1": "1. Suche nach Stichwort",
+        "menu_option_1": "1. Suche nach Schlüsselwort",
         "menu_option_2": "2. Suche nach Genre und Jahr",
         "menu_option_3": "3. Beliebte Suchanfragen anzeigen",
         "menu_option_0": "0. Programm beenden",
         "menu_prompt": "Wählen Sie eine Option (1 / 2 / 3 / 0): ",
-        "keyword_prompt": "Geben Sie ein Stichwort für die Filmsuche ein: ",
+        "keyword_prompt": "Geben Sie ein Schlüsselwort für die Filmsuche ein: ",
         "no_results": "Keine Ergebnisse für Ihre Anfrage gefunden.",
         "continue_prompt": "Möchten Sie eine weitere Suche durchführen? (Y/N): ",
         "invalid_choice": "Ungültige Auswahl. Bitte versuchen Sie es erneut.",
@@ -55,6 +57,8 @@ translations = {
         "available_genres": "Verfügbare Genres:",
         "year_range": "Gültiger Jahresbereich: {min_year} – {max_year}",
         "film_not_found": "Film nicht gefunden.",
+        "next_page": "nächste Seite",
+        "return_to_menu": "zurück zum Menü",
         "film_labels": [
             "Filmtitel", "Beschreibung", "Jahr",
             "Dauer (Min.)", "Sprache", "Schauspieler", "Genres"

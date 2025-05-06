@@ -2,14 +2,19 @@ from project_Oscar_de.db.connector import get_log_connection
 from project_Oscar_de.db.queries import POPULAR_SEARCHES
 from project_Oscar_de.logic.logger import log_error
 from typing import List, Tuple
+import os
+
+
+def clear_screen():
+    os.system("cls" if os.name == "nt" else "clear")
 
 
 def get_popular_searches(limit: int = 10) -> List[Tuple[str, int]]:
     """
-    Возвращает список самых популярных поисковых запросов.
+    Returns a list of the most popular search queries.
 
-    :param limit: Количество запросов
-    :return: Список кортежей (запрос, количество)
+    :param limit: Number of queries to return
+    :return: List of tuples (query, count)
     """
     conn = get_log_connection()
     if conn is None:
@@ -21,7 +26,8 @@ def get_popular_searches(limit: int = 10) -> List[Tuple[str, int]]:
         return results
     except Exception as e:
         log_error("get_popular_searches", e)
-        print(f"Ошибка при получении популярных запросов: {e}")
+        clear_screen()
+        print(f"Error while retrieving popular searches: {e}")
         return []
     finally:
         conn.close()

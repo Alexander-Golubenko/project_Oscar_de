@@ -1,12 +1,19 @@
 from project_Oscar_de.logic.details import get_film_details
 from project_Oscar_de.logic.search import get_all_genres, get_year_range
 from typing import List, Tuple
+import os
 
+def clear_screen():
+    """
+    Clears the terminal screen (cross-platform).
+    """
+    os.system("cls" if os.name == "nt" else "clear")
 
 def show_menu(t: dict) -> str:
     """
-    Отображает главное меню и возвращает выбор пользователя.
+    Displays the main menu and returns the user's choice.
     """
+    clear_screen()
     print(f"\n{t['menu_title']}")
     print(t["menu_option_1"])
     print(t["menu_option_2"])
@@ -17,20 +24,23 @@ def show_menu(t: dict) -> str:
 
 def ask_keyword(t: dict) -> str:
     """
-    Запрашивает у пользователя ключевое слово для поиска.
+    Prompts the user to enter a keyword for the search.
     """
+    clear_screen()
     return input(t["keyword_prompt"]).strip()
 
 
 def ask_genre_and_year(t: dict) -> Tuple[str | None, int | None] | None:
     """
-    Запрашивает у пользователя жанр (или Enter для любого) и год выпуска (или Enter для любого).
+    Prompts the user to select a genre (or press Enter for any) and a release year (or press Enter for any).
     """
     genres = get_all_genres()
     if not genres:
+        clear_screen()
         print(t["no_results"])
         return None
 
+    clear_screen()
     print(f"\n{t['available_genres']}")
     for i, genre in enumerate(genres, start=1):
         print(f"{i}. {genre}")
@@ -53,6 +63,7 @@ def ask_genre_and_year(t: dict) -> Tuple[str | None, int | None] | None:
 
     year_range = get_year_range(selected_genre)
     if not year_range:
+        clear_screen()
         print(t["no_results"])
         return None
 
@@ -77,38 +88,86 @@ def ask_genre_and_year(t: dict) -> Tuple[str | None, int | None] | None:
 
     return selected_genre, selected_year
 
+def paginate(items: List[Tuple], size: int = 20):
+    """
+    Generator that yields chunks of a list with a given page size.
+    """
+    for i in range(0, len(items), size):
+        yield items[i:i + size]
 
 def show_search_results(results: List[Tuple], t: dict, show_year: bool = True) -> int | None:
     """
-    Отображает список фильмов и предлагает выбрать один для просмотра деталей.
+    Displays movies in pages and allows user to select one, go to next page, or exit.
     """
     if not results:
         print("\n" + t["no_results"])
         return None
 
-    while True:
-        print("\n" + t["menu_option_1"])  # название блока (например, "Найденные фильмы")
-        for i, item in enumerate(results, start=1):
-            title = f"{item[1]} ({item[2]})" if show_year and len(item) > 2 else item[1]
+    start_index = 0
+
+    for page in paginate(results):
+        clear_screen()
+        # end_index = start_index + len(page)
+        # print(f"\n{t['menu_option_1']} ({start_index + 1}–{end_index} / {len(results)})")
+
+        for i, film in enumerate(page, start=start_index + 1):
+            if len(film) >= 3:
+                title = f"{film[1]} ({film[2]})" if show_year else film[1]
+            else:
+                title = film[1] if len(film) > 1 else str(film)
             print(f"{i}. {title}")
 
-        sub_choice = input(t["enter_film_number"]).strip()
-        if sub_choice == "":
-            return None
+        user_input = input(
+            f"\n{t['enter_film_number']} "
+            f"[n = {t.get('next_page', 'next')}, Enter = {t.get('return_to_menu', 'exit')}]: "
+        ).strip().lower()
 
-        if sub_choice.isdigit():
-            index = int(sub_choice) - 1
-            if 0 <= index < len(results):
-                return results[index][0]
-            else:
-                print(t["invalid_film_number"])
-        else:
-            print(t["invalid_film_number"])
+        if user_input == "":
+            return None
+        if user_input == "n":
+            start_index += len(page)
+            continue
+        if user_input.isdigit():
+            index = int(user_input) - 1
+            return results[index][0] if 0 <= index < len(results) else None
+
+        print(t["invalid_film_number"])
+        return None
+
+    return None
+
+# def show_search_results(results: List[Tuple], t: dict, show_year: bool = True) -> int | None:
+#     """
+#     Displays a list of movies and prompts the user to select one for viewing details.
+#     """
+#     if not results:
+#         print("\n" + t["no_results"])
+#         return None
+#
+#     while True:
+#         #print("\n" + t["menu_option_1"] + "\n")
+#         for i, item in enumerate(results, start=1):
+#             title = f"\n{item[1]} ({item[2]})" if show_year and len(item) > 2 else item[1]
+#             print(f"{i}. {title}")
+#
+#         sub_choice = input(t["enter_film_number"]).strip()
+#         if sub_choice == "":
+#             return None
+#
+#         if sub_choice.isdigit():
+#             index = int(sub_choice) - 1
+#             if 0 <= index < len(results):
+#                 return results[index][0]
+#             else:
+#                 print(t["invalid_film_number"])
+#         else:
+#             print(t["invalid_film_number"])
+
 
 
 def ask_continue(t: dict) -> bool:
     """
-    Спрашивает пользователя, хочет ли он продолжить работу с приложением.
+    Asks the user whether they want to continue using the application.
     """
     while True:
         again = input(f"\n{t['continue_prompt']}").strip().lower()
@@ -122,12 +181,14 @@ def ask_continue(t: dict) -> bool:
 
 def show_popular_queries(queries: List[Tuple[str, int]], t: dict) -> None:
     """
-    Отображает список популярных запросов с частотами.
+    Displays a list of popular queries along with their frequencies.
     """
     if queries:
+        clear_screen()
         print(f"\n{t['popular_queries_title']}")
         for i, (term, freq) in enumerate(queries, start=1):
             print(f"{i}. {term} — {freq} {t['times_suffix']}")
     else:
+        clear_screen()
         print(t["no_query_records"])
 

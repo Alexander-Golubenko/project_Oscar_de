@@ -9,10 +9,10 @@ load_dotenv()
 
 def get_connection(database: str = "sakila") -> mysql.connector.connection_cext.CMySQLConnection | None:
     """
-    Устанавливает соединение с базой данных Sakila.
+    Establishes a connection to the Sakila database.
 
-    :param database: Название базы данных (по умолчанию 'sakila')
-    :return: Объект соединения или None при ошибке
+    :param database: Name of the database (default is 'sakila')
+    :return: Connection object or None if an error occurs
     """
     try:
         connection = mysql.connector.connect(
@@ -29,10 +29,10 @@ def get_connection(database: str = "sakila") -> mysql.connector.connection_cext.
 
 def get_log_connection(database: str = "group_111124_fp_GolubenkoA") -> mysql.connector.connection_cext.CMySQLConnection | None:
     """
-    Устанавливает соединение с базой данных логов.
+    Establishes a connection to the logging database.
 
-    :param database: Название базы данных логов (по умолчанию 'group_111124_fp_GolubenkoA')
-    :return: Объект соединения или None при ошибке
+    :param database: Name of the logging database (default is 'group_111124_fp_GolubenkoA')
+    :return: Connection object or None if an error occurs
     """
     try:
         connection = mysql.connector.connect(

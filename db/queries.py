@@ -1,8 +1,8 @@
 SEARCH_BY_KEYWORD = """
     SELECT film_id, title, release_year
     FROM film
-    WHERE title LIKE %s
-    LIMIT 20;
+    WHERE title LIKE %s;
+    # LIMIT 20;
 """
 
 

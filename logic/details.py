@@ -3,14 +3,19 @@ from project_Oscar_de.logic.logger import log_error
 from project_Oscar_de.db.queries import GET_FILM_DETAILS
 from tabulate import tabulate
 import textwrap
+import os
+
+
+def clear_screen():
+    os.system("cls" if os.name == "nt" else "clear")
 
 
 def get_film_details(film_id: int, t: dict) -> None:
     """
-    Выводит карточку фильма с использованием переведённых названий полей.
+    Displays the movie details card using translated field labels.
 
-    :param film_id: ID фильма для отображения
-    :param t: Словарь перевода текущего языка
+    :param film_id: ID of the movie to display
+    :param t: Translation dictionary for the current language
     """
     conn = get_connection()
     if conn is None:
@@ -31,6 +36,7 @@ def get_film_details(film_id: int, t: dict) -> None:
 
             labels = t["film_labels"]
             table = list(zip(labels, result))
+            clear_screen()
             print("\n" + tabulate(table, tablefmt="grid"))
         else:
             print(t["film_not_found"])
