@@ -1,4 +1,11 @@
-Описание (RUS)
+# Oscar Project
+
+## Навигация
+- [Русский](#русская-версия)
+- [English](#english-version)
+- [Deutsch](#deutsche-version)
+
+## Описание (русская версия)
 
 Проект "Оскар" — Консольное приложение для поиска фильмов
 
@@ -22,6 +29,7 @@ python -m project_Oscar_de.main
 
 Структура проекта
 
+```
 project_Oscar_de/
 │
 ├── main.py                  # Точка входа: запуск приложения
@@ -53,6 +61,7 @@ project_Oscar_de/
 ├── .env                     # Переменные окружения (доступ к БД)
 ├── requirements.txt         # Зависимости проекта
 └── README.md                # Документация
+```
 
 Тестирование
 Все тесты выполняются вручную по заранее составленному чек-листу test_checklist.json:
@@ -69,8 +78,8 @@ project_Oscar_de/
 Автор
 Александр Голубенко — 2025
 
-
-Description (English)
+## English Version
+### Description
 
 Oscar Project — Console-Based Movie Search App
 
@@ -104,7 +113,7 @@ Follow the prompts to search movies or view statistics.
 
 
 Project Structure
-
+```
 project_Oscar_de/
 │
 ├── main.py                  # Entry point
@@ -136,7 +145,7 @@ project_Oscar_de/
 ├── .env                     # DB credentials
 ├── requirements.txt         # Dependencies
 └── README.md                # This file
-
+```
 Testing
 
 Tests are done manually via test_checklist.json. Each case includes:
@@ -164,8 +173,8 @@ Alexander Golubenko — 2025
 
 
 
-
-Beschreibung (Deutsch)
+## Deutsche Version
+### Beschreibung
 
 Projekt "Oscar" — Konsolenanwendung zur Filmsuche
 
@@ -205,7 +214,7 @@ Folgen Sie den Anweisungen in der Konsole zur Filmsuche oder Statistikanzeige.
 
 
 Projektstruktur
-
+```
 project_Oscar_de/
 │
 ├── main.py                  # Einstiegspunkt
@@ -237,8 +246,7 @@ project_Oscar_de/
 ├── .env                     # Zugangsdaten zur DB
 ├── requirements.txt         # Abhängigkeiten
 └── README.md                # Diese Datei
-
-
+```
 Tests
 
 Die Tests werden manuell über test_checklist.json durchgeführt. Jeder Testfall enthält:
