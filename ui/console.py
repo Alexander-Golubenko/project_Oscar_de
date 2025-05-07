@@ -107,8 +107,6 @@ def show_search_results(results: List[Tuple], t: dict, show_year: bool = True) -
 
     for page in paginate(results):
         clear_screen()
-        # end_index = start_index + len(page)
-        # print(f"\n{t['menu_option_1']} ({start_index + 1}–{end_index} / {len(results)})")
 
         for i, film in enumerate(page, start=start_index + 1):
             if len(film) >= 3:
@@ -117,10 +115,13 @@ def show_search_results(results: List[Tuple], t: dict, show_year: bool = True) -
                 title = film[1] if len(film) > 1 else str(film)
             print(f"{i}. {title}")
 
-        user_input = input(
-            f"\n{t['enter_film_number']} "
-            f"[n = {t.get('next_page', 'next')}, Enter = {t.get('return_to_menu', 'exit')}]: "
-        ).strip().lower()
+        has_next_page = start_index + len(page) < len(results)
+
+        prompt = f"\n{t['enter_film_number']}"
+        if has_next_page:
+            prompt += f" [n = {t.get('next_page', 'next')}]"
+
+        user_input = input(prompt).strip().lower()
 
         if user_input == "":
             return None
@@ -135,34 +136,6 @@ def show_search_results(results: List[Tuple], t: dict, show_year: bool = True) -
         return None
 
     return None
-
-# def show_search_results(results: List[Tuple], t: dict, show_year: bool = True) -> int | None:
-#     """
-#     Displays a list of movies and prompts the user to select one for viewing details.
-#     """
-#     if not results:
-#         print("\n" + t["no_results"])
-#         return None
-#
-#     while True:
-#         #print("\n" + t["menu_option_1"] + "\n")
-#         for i, item in enumerate(results, start=1):
-#             title = f"\n{item[1]} ({item[2]})" if show_year and len(item) > 2 else item[1]
-#             print(f"{i}. {title}")
-#
-#         sub_choice = input(t["enter_film_number"]).strip()
-#         if sub_choice == "":
-#             return None
-#
-#         if sub_choice.isdigit():
-#             index = int(sub_choice) - 1
-#             if 0 <= index < len(results):
-#                 return results[index][0]
-#             else:
-#                 print(t["invalid_film_number"])
-#         else:
-#             print(t["invalid_film_number"])
-
 
 
 def ask_continue(t: dict) -> bool:

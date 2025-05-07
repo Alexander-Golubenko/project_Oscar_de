@@ -87,12 +87,12 @@ Bilingual: Russian / German
 
 Oscar is a console application built in Python that works with the Sakila MySQL database and allows users to:
 
-Search movies by keyword
-Search movies by genre and year
-Log and count all search queries
-Display most popular queries
-Show full movie details (description, genre, actors, etc.)
-At launch, the app lets the user choose the interface language: Russian or German.
+- Search movies by keyword
+- Search movies by genre and year
+- Log and count all search queries
+- Display most popular queries
+- Show full movie details (description, genre, actors, etc.)
+- At launch, the app lets the user choose the interface language: Russian or German.
 
 
 Installation
@@ -150,25 +150,20 @@ Testing
 
 Tests are done manually via test_checklist.json. Each case includes:
 
-Feature description
-
-Input and expected output
+- Feature description
+- Input and expected output
 
 Pass status
 
 
 Dependencies
 
-mysql-connector-python
-
-tabulate
-
-dotenv
-
+- mysql-connector-python
+- tabulate
+- dotenv
 
 
 Author
-
 Alexander Golubenko — 2025
 
 
@@ -183,15 +178,11 @@ Zweisprachig: Russisch / Deutsch
 
 Oscar ist eine Python-Konsolenanwendung, die mit der MySQL-Datenbank Sakila arbeitet und folgende Funktionen bietet:
 
-Filmsuche nach Stichwort
-
-Filmsuche nach Genre und Erscheinungsjahr
-
-Protokollierung und Zählung aller Suchanfragen
-
-Anzeige der beliebtesten Suchbegriffe
-
-Detaillierte Filmkarte mit Beschreibung, Genre, Schauspielern usw.
+- Filmsuche nach Stichwort
+- Filmsuche nach Genre und Erscheinungsjahr
+- Protokollierung und Zählung aller Suchanfragen
+- Anzeige der beliebtesten Suchbegriffe
+- Detaillierte Filmkarte mit Beschreibung, Genre, Schauspielern usw.
 
 Beim Start der Anwendung wählt der Benutzer die Sprache: Russisch oder Deutsch.
 
@@ -247,28 +238,24 @@ project_Oscar_de/
 ├── requirements.txt         # Abhängigkeiten
 └── README.md                # Diese Datei
 ```
+
 Tests
 
 Die Tests werden manuell über test_checklist.json durchgeführt. Jeder Testfall enthält:
 
-Beschreibung der Funktion
-
-Eingaben und erwartete Ergebnisse
-
-Status (bestanden/nicht bestanden)
+- Beschreibung der Funktion
+- Eingaben und erwartete Ergebnisse
+- Status (bestanden/nicht bestanden)
 
 
 Abhängigkeiten
 
-mysql-connector-python
-
-tabulate
-
-dotenv
+- mysql-connector-python
+- tabulate
+- dotenv
 
 
 Autor
-
 Alexander Golubenko — 2025
 
 

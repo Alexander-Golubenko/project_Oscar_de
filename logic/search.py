@@ -75,8 +75,6 @@ def search_by_genre_and_year(genre: str | None, year: int | None) -> List[Tuple[
             if conditions:
                 query += " WHERE " + " AND ".join(conditions)
 
-            # query += " LIMIT 20;"
-
             cursor.execute(query, tuple(params))
             results = cursor.fetchall()
 
