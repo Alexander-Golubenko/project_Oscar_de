@@ -1,3 +1,22 @@
+
+
+def choose_language() -> str:
+    """
+    Prompts the user to select the interface language.
+    """
+    print("\nВыберите язык / Sprache wählen:")
+    print("1. Русский")
+    print("2. Deutsch")
+    while True:
+        lang_choice = input("\nВведите номер языка (1 или 2) \n/ Geben Sie die Nummer der Sprache ein (1 oder 2): ").strip()
+        if lang_choice == "1":
+            return "ru"
+        elif lang_choice == "2":
+            return "de"
+        else:
+            print("Неверный выбор / Ungültige Auswahl")
+
+
 translations = {
     "ru": {
         "menu_title": "--- Меню ---",

@@ -10,24 +10,7 @@ from project_Oscar_de.ui.console import (
     clear_screen
 )
 from project_Oscar_de.logic.details import get_film_details
-from project_Oscar_de.ui.local import get_translator
-
-
-def choose_language() -> str:
-    """
-    Prompts the user to select the interface language.
-    """
-    print("\nВыберите язык / Sprache wählen:")
-    print("1. Русский")
-    print("2. Deutsch")
-    while True:
-        lang_choice = input("\nВведите номер языка (1 или 2) \n/ Geben Sie die Nummer der Sprache ein (1 oder 2): ").strip()
-        if lang_choice == "1":
-            return "ru"
-        elif lang_choice == "2":
-            return "de"
-        else:
-            print("Неверный выбор / Ungültige Auswahl")
+from project_Oscar_de.ui.local import get_translator, choose_language
 
 
 def main() -> None:
